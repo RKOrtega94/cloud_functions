@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "module": "NodeNext",
+    "esModuleInterop": true,
+    "moduleResolution": "nodenext",
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "outDir": "lib",
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2017",
+    "baseUrl": ".",
+    "paths": {
+      "@utils/*": ["src/core/utils/*"],
+      "@constants/*": ["src/core/constants/*"],
+      "@auth/*": ["src/modules/auth/*"],
+      "@tasks/*": ["src/modules/tasks/*"]
+    }
+  },
+  "compileOnSave": true,
+  "include": ["src"]
+}
