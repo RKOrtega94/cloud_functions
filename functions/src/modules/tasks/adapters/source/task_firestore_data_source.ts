@@ -1,10 +1,10 @@
-import { TaskInterface } from "@tasks/domain/interface/task_interface";
-import { FirestoreUtils } from "@utils/firestore.utils";
+import { FirestoreUtils } from "../../../../core/utils/firestore.utils";
+import { TaskInterface } from "../../domain/interface/task_interface";
 
 /**
  * TaskFirebaseDataSource
  */
-export class TaskFirebaseDataSource extends FirestoreUtils<TaskInterface> {
+export class TaskFirestoreDataSource extends FirestoreUtils {
   constructor() {
     super("tasks");
   }

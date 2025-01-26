@@ -1,9 +1,9 @@
 import { TaskRepository } from "../../application/repository/task_repository";
 import { TaskInterface } from "../../domain/interface/task_interface";
-import { TaskFirebaseDataSource } from "../source/task_firebase_data_source";
+import { TaskFirestoreDataSource } from "../source/task_firestore_data_source";
 
 export class TaskRepositoryImpl implements TaskRepository {
-  constructor(private dataSource: TaskFirebaseDataSource) {}
+  constructor(private dataSource: TaskFirestoreDataSource) {}
 
   create(task: TaskInterface): Promise<TaskInterface> {
     return this.dataSource.createTask(task);

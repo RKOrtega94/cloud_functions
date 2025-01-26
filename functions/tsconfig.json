@@ -8,14 +8,7 @@
     "outDir": "lib",
     "sourceMap": true,
     "strict": true,
-    "target": "es2017",
-    "baseUrl": ".",
-    "paths": {
-      "@utils/*": ["src/core/utils/*"],
-      "@constants/*": ["src/core/constants/*"],
-      "@auth/*": ["src/modules/auth/*"],
-      "@tasks/*": ["src/modules/tasks/*"]
-    }
+    "target": "es2017"
   },
   "compileOnSave": true,
   "include": ["src"]
