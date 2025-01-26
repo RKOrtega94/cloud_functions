@@ -23,7 +23,7 @@ app.post("/", async (req, res) => {
     const data = req.body;
     logger.info(data);
     const task = await service.createTask(userId, data);
-    res.send(new ResponseModel(200, "Task created", task));
+    res.status(201).send(new ResponseModel(201, "Task created", task));
   } catch (error: any) {
     res.status(500).send(new ResponseModel(500, error.message, null));
   }
@@ -35,6 +35,9 @@ app.put("/:id", async (req, res) => {
     const data = req.body;
     const id = req.params.id;
     const task = await service.updateTask(userId, { id, ...data });
+    if (!task) {
+      res.status(404).send(new ResponseModel(404, "Task not found", null));
+    }
     res.send(new ResponseModel(200, "Task updated", task));
   } catch (error: any) {
     res.status(500).send(new ResponseModel(500, error.message, null));
@@ -46,7 +49,7 @@ app.delete("/:id", async (req, res) => {
     const userId: string = req.headers["user_id"] as string;
     const id = req.params.id;
     await service.deleteTask(userId, id);
-    res.send(new ResponseModel(200, "Task deleted", null));
+    res.status(204).send(new ResponseModel(204, "Task deleted", null));
   } catch (error: any) {
     res.status(500).send(new ResponseModel(500, error.message, null));
   }
