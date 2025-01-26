@@ -5,19 +5,19 @@ import { TaskFirestoreDataSource } from "../source/task_firestore_data_source";
 export class TaskRepositoryImpl implements TaskRepository {
   constructor(private dataSource: TaskFirestoreDataSource) {}
 
-  create(task: TaskInterface): Promise<TaskInterface> {
-    return this.dataSource.createTask(task);
+  create(userId: string, task: TaskInterface): Promise<TaskInterface> {
+    return this.dataSource.createTask(userId, task);
   }
-  update(task: TaskInterface): Promise<TaskInterface> {
-    return this.dataSource.updateTask(task.id!, task);
+  update(userId: string, task: TaskInterface): Promise<TaskInterface> {
+    return this.dataSource.updateTask(userId, task);
   }
-  delete(id: string): Promise<void> {
-    return this.dataSource.deleteTask(id);
+  delete(userId: string, taskId: string): Promise<void> {
+    return this.dataSource.deleteTask(userId, taskId);
   }
   findById(id: string): Promise<TaskInterface> {
     return this.dataSource.getTaskById(id);
   }
-  findAll(): Promise<TaskInterface[]> {
-    return this.dataSource.getAllTasks();
+  findAll(userId: string): Promise<TaskInterface[]> {
+    return this.dataSource.getAllTasks(userId);
   }
 }

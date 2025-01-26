@@ -9,23 +9,29 @@ export class TaskFirestoreDataSource extends FirestoreUtils {
     super("tasks");
   }
 
-  async createTask(task: TaskInterface): Promise<TaskInterface> {
-    return this.create(task);
+  async createTask(
+    userId: string,
+    task: TaskInterface
+  ): Promise<TaskInterface> {
+    return this.create(task, `users/${userId}/tasks`);
   }
 
   async getTaskById(id: string): Promise<TaskInterface> {
     return this.getById(id);
   }
 
-  async getAllTasks(): Promise<TaskInterface[]> {
-    return this.getAll();
+  async getAllTasks(userId: string): Promise<TaskInterface[]> {
+    return this.getAll(undefined, `users/${userId}/tasks`);
   }
 
-  async updateTask(id: string, task: TaskInterface): Promise<TaskInterface> {
-    return this.update(id, task);
+  async updateTask(
+    userId: string,
+    task: TaskInterface
+  ): Promise<TaskInterface> {
+    return this.update(task.id!, task, `users/${userId}/tasks`);
   }
 
-  async deleteTask(id: string): Promise<void> {
-    return this.remove(id);
+  async deleteTask(userId: string, taskId: string): Promise<void> {
+    return this.remove(taskId, `users/${userId}/tasks`);
   }
 }
