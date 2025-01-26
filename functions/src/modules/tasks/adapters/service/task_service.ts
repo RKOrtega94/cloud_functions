@@ -22,4 +22,8 @@ export class TaskService {
   async updateTask(userId: string, task: any) {
     return updateTaskUseCase.execute(userId, task);
   }
+
+  async deleteTask(userId: string, taskId: string) {
+    return respository.delete(userId, taskId);
+  }
 }

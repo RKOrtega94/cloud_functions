@@ -41,4 +41,15 @@ app.put("/:id", async (req, res) => {
   }
 });
 
+app.delete("/:id", async (req, res) => {
+  try {
+    const userId: string = req.headers["user_id"] as string;
+    const id = req.params.id;
+    await service.deleteTask(userId, id);
+    res.send(new ResponseModel(200, "Task deleted", null));
+  } catch (error: any) {
+    res.status(500).send(new ResponseModel(500, error.message, null));
+  }
+});
+
 export default app;
