@@ -1,4 +1,6 @@
 import { CreateTaskUseCase } from "../../application/use_cases/create_task_use_case";
+import { DeleteTaskUseCase } from "../../application/use_cases/detele_task_use_case";
+import { GetTaskByIdUseCase } from "../../application/use_cases/get_task_by_id_use_case";
 import { RetrieveTasksUseCase } from "../../application/use_cases/retrieve_tasks_use_case";
 import { UpdateTaskUseCase } from "../../application/use_cases/update_task_use_case";
 import { TaskRepositoryImpl } from "../repository/task_repository_impl";
@@ -9,10 +11,15 @@ const respository = new TaskRepositoryImpl(datasource);
 const retrieveTasksUseCase = new RetrieveTasksUseCase(respository);
 const createTaskUseCase = new CreateTaskUseCase(respository);
 const updateTaskUseCase = new UpdateTaskUseCase(respository);
-
+const getTaskByIdUseCase = new GetTaskByIdUseCase(respository);
+const deleteTaskUseCase = new DeleteTaskUseCase(respository);
 export class TaskService {
   async getAllTasks(userId: string) {
     return retrieveTasksUseCase.execute(userId);
+  }
+
+  async getTaskById(userId: string, taskId: string) {
+    return getTaskByIdUseCase.execute(userId, taskId);
   }
 
   async createTask(userId: string, task: any) {
@@ -24,6 +31,6 @@ export class TaskService {
   }
 
   async deleteTask(userId: string, taskId: string) {
-    return respository.delete(userId, taskId);
+    return deleteTaskUseCase.execute(userId, taskId);
   }
 }

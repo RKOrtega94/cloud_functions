@@ -4,6 +4,6 @@ export class DeleteTaskUseCase {
   constructor(private taskRepository: TaskRepository) {}
 
   async execute(userId: string, taskId: string): Promise<void> {
-    return this.taskRepository.delete(taskId, userId);
+    return this.taskRepository.delete(userId, taskId);
   }
 }

@@ -34,6 +34,7 @@ export abstract class FirestoreUtils {
    * @returns The document with the given id
    */
   protected async getById(id: string, reference?: string): Promise<any> {
+    logger.info(`getting: ${reference || this.collection}/${id}`);
     try {
       const doc = await this.db
         .doc(`${reference || this.collection}/${id}`)
@@ -107,9 +108,17 @@ export abstract class FirestoreUtils {
    */
   protected async remove(id: string, reference?: string): Promise<void> {
     try {
-      await this.db.doc(`${reference || this.collection}/${id}`).delete();
+      logger.info(`deleting: ${reference || this.collection}/${id}`);
+      const doc = await this.db
+        .doc(`${reference || this.collection}/${id}`)
+        .get();
+      if (!doc.exists) {
+        throw new Error("Document not found");
+      } else {
+        await doc.ref.delete();
+      }
     } catch (error: any) {
-      throw new Error(error);
+      throw new Error(`Failed to delete document: ${error.message}`);
     }
   }
 }

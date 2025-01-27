@@ -30,7 +30,7 @@ export abstract class TaskRepository {
    * @param id - string
    * @returns Promise<TaskInterface>
    */
-  abstract findById(id: string): Promise<TaskInterface>;
+  abstract findById(userId: string, id: string): Promise<TaskInterface>;
 
   /**
    * Find all tasks

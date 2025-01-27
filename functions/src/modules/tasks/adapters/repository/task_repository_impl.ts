@@ -14,8 +14,8 @@ export class TaskRepositoryImpl implements TaskRepository {
   delete(userId: string, taskId: string): Promise<void> {
     return this.dataSource.deleteTask(userId, taskId);
   }
-  findById(id: string): Promise<TaskInterface> {
-    return this.dataSource.getTaskById(id);
+  findById(userid: string, id: string): Promise<TaskInterface> {
+    return this.dataSource.getTaskById(userid, id);
   }
   findAll(userId: string): Promise<TaskInterface[]> {
     return this.dataSource.getAllTasks(userId);

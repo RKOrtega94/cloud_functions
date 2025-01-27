@@ -13,11 +13,14 @@ export class TaskFirestoreDataSource extends FirestoreUtils {
     userId: string,
     task: TaskInterface
   ): Promise<TaskInterface> {
-    return this.create(task, `users/${userId}/tasks`);
+    return this.create(
+      { ...task, createdAt: Date.now(), updatedAt: Date.now() },
+      `users/${userId}/tasks`
+    );
   }
 
-  async getTaskById(id: string): Promise<TaskInterface> {
-    return this.getById(id);
+  async getTaskById(userid: string, id: string): Promise<TaskInterface> {
+    return this.getById(id, `users/${userid}/tasks`);
   }
 
   async getAllTasks(userId: string): Promise<TaskInterface[]> {
@@ -28,7 +31,11 @@ export class TaskFirestoreDataSource extends FirestoreUtils {
     userId: string,
     task: TaskInterface
   ): Promise<TaskInterface> {
-    return this.update(task.id!, task, `users/${userId}/tasks`);
+    return this.update(
+      task.id!,
+      { ...task, updatedAt: Date.now() },
+      `users/${userId}/tasks`
+    );
   }
 
   async deleteTask(userId: string, taskId: string): Promise<void> {
