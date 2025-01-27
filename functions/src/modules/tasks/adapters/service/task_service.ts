@@ -3,6 +3,7 @@ import { DeleteTaskUseCase } from "../../application/use_cases/detele_task_use_c
 import { GetTaskByIdUseCase } from "../../application/use_cases/get_task_by_id_use_case";
 import { RetrieveTasksUseCase } from "../../application/use_cases/retrieve_tasks_use_case";
 import { UpdateTaskUseCase } from "../../application/use_cases/update_task_use_case";
+import { TaskInterface } from "../../domain/interface/task_interface";
 import { TaskRepositoryImpl } from "../repository/task_repository_impl";
 import { TaskFirestoreDataSource } from "../source/task_firestore_data_source";
 
@@ -14,23 +15,23 @@ const updateTaskUseCase = new UpdateTaskUseCase(respository);
 const getTaskByIdUseCase = new GetTaskByIdUseCase(respository);
 const deleteTaskUseCase = new DeleteTaskUseCase(respository);
 export class TaskService {
-  async getAllTasks(userId: string) {
+  async getAllTasks(userId: string): Promise<TaskInterface[]> {
     return retrieveTasksUseCase.execute(userId);
   }
 
-  async getTaskById(userId: string, taskId: string) {
+  async getTaskById(userId: string, taskId: string): Promise<TaskInterface> {
     return getTaskByIdUseCase.execute(userId, taskId);
   }
 
-  async createTask(userId: string, task: any) {
+  async createTask(userId: string, task: any): Promise<TaskInterface> {
     return createTaskUseCase.execute(userId, task);
   }
 
-  async updateTask(userId: string, task: any) {
+  async updateTask(userId: string, task: any): Promise<TaskInterface> {
     return updateTaskUseCase.execute(userId, task);
   }
 
-  async deleteTask(userId: string, taskId: string) {
+  async deleteTask(userId: string, taskId: string): Promise<void> {
     return deleteTaskUseCase.execute(userId, taskId);
   }
 }
