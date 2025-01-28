@@ -1,0 +1,17 @@
+# SofkaChallenge
+
+# EN
+
+This project was development with Node.js (22.13.1) and Express.js (4.21.2) for the backend for manaje task api.
+
+Architecture:
+
+- The project is driven by Hexagonal Architecture and separated by modules.
+
+# ES
+
+Este proyecto fue desarrollado con Node.js (22.13.1) y Express.js (4.21.2) para el backend para manejar la api de tareas.
+
+Arquitectura:
+
+- El proyecto está impulsado por la Arquitectura Hexagonal y separado por módulos.
