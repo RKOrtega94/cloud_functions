@@ -8,6 +8,9 @@ Architecture:
 
 - The project is driven by Hexagonal Architecture and separated by modules.
 
+For testing can run the API inpostman from the following json:
+[Postman Collection](./FUNTIONS.postman_collection.json)
+
 # ES
 
 Este proyecto fue desarrollado con Node.js (22.13.1) y Express.js (4.21.2) para el backend para manejar la api de tareas.
@@ -15,3 +18,6 @@ Este proyecto fue desarrollado con Node.js (22.13.1) y Express.js (4.21.2) para 
 Arquitectura:
 
 - El proyecto está impulsado por la Arquitectura Hexagonal y separado por módulos.
+
+Para probar puede ejecutar la API en postman desde el siguiente json:
+[Postman Collection](./FUNTIONS.postman_collection.json)
